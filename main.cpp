@@ -1,10 +1,7 @@
-#include <iostream>
+#include "Streaming.h"
 
-using namespace std;
+int main(){
+    mll L; adr_parent parent; adr_children child;
+    create_MLL(L);
 
-int main()
-{
-    cout << "Hello world!" << endl;
-    cout << "coba coba github ges, 1, 2, 3" << endl;
-    return 0;
 }

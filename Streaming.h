@@ -1,14 +1,17 @@
 #ifndef STREAMING_H_INCLUDED
 #define STREAMING_H_INCLUDED
 
+#include <iostream>
+using namespace std;
+
 #define first(L) L.first
 #define last(L) L.last
 
-#define infoParent(P) P -> infoParent
-#define nextParent(P) P -> NextParent
+#define infoParent(P) P->infoParent
+#define nextParent(P) P->nextParent
 
-#define infoChild(P) P -> infoChild
-#define nextChild(P) P-> NextChild
+#define infoChild(P) P->infoChild
+#define nextChild(P) P->nextChild
 
 typedef struct elm_parent *adr_parent;
 typedef struct elm_children *adr_children;
@@ -17,7 +20,7 @@ struct parent{
     int total;
 };
 struct children{
-    string namFilm;
+    string namaFilm;
     int rating;
     string sutradara;
 };
@@ -28,7 +31,7 @@ struct elm_parent{
 };
 struct elm_children {
     children infoChild;
-    adr_children NextChild;
+    adr_children nextChild;
 };
 struct mll {
     adr_parent first;
@@ -41,10 +44,9 @@ adr_children alokasiChildren(string namaFilm, int rating, string sutradara);
 void insertParent(mll &L, adr_parent p);
 void deleteParent(mll &L, adr_parent &p);
 void showParent(mll L);
-adr_parent findParent(mll L, string namaFilm);
-
-void insertChildOfParent(mll &L, adr_parent p);
-void deleteChildOfParent(mll &L, adr_parent &p);
+adr_parent findParent(mll L, string namaGenre);
+void insertChildOfParent(mll &L, adr_parent p, adr_children q);
+void deleteChildOfParent(mll &L, adr_parent p, adr_children &q);
 void showChildOfParentX(mll &L, adr_parent p);
 adr_children findChildOfParentX(mll &L, adr_parent p, string namFilm);
 
