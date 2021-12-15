@@ -35,7 +35,17 @@ struct mll {
     adr_parent last;
 };
 
+void create_MLL(mll &L);
+adr_parent alokasiParent(string genre, int total);
+adr_children alokasiChildren(string namaFilm, int rating, string sutradara);
+void insertParent(mll &L, adr_parent p);
+void deleteParent(mll &L, adr_parent &p);
+void showParent(mll L);
+adr_parent findParent(mll L, string namaFilm);
 
-
+void insertChildOfParent(mll &L, adr_parent p);
+void deleteChildOfParent(mll &L, adr_parent &p);
+void showChildOfParentX(mll &L, adr_parent p);
+adr_children findChildOfParentX(mll &L, adr_parent p, string namFilm);
 
 #endif // STREAMING_H_INCLUDED
