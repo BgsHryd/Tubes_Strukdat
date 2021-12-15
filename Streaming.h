@@ -27,7 +27,7 @@ struct elm_parent{
     adr_children nextChild;
 };
 struct elm_children {
-    children infoChildr;
+    children infoChild;
     adr_children NextChild;
 };
 struct mll {
