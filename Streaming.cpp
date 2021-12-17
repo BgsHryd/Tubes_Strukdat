@@ -59,6 +59,7 @@ void deleteParent(mll &L, adr_parent &p){
         }
         nextParent(jalan) = first(L);
         nextParent(p) = NULL;
+        last(L) = jalan;
     }
 }
 void showParent(mll L){
@@ -68,29 +69,39 @@ void showParent(mll L){
     }
     else{
         p = first(L);
-        while (p != NULL){
+        while (nextParent(p) != first(L)){
             cout << "genre: " << infoParent(p).genre << endl;
             cout << "Jumlah Film: " << infoParent(p).total << endl;
             cout << endl;
             p = nextParent(p);
         }
+        cout << "genre: " << infoParent(p).genre << endl;
+        cout << "Jumlah Film: " << infoParent(p).total << endl;
+        cout << endl;
     }
 }
 adr_parent findParent(mll L, string namaGenre){
     adr_parent p = first(L);
-    while (p != NULL){
+    while (nextParent(p) != first(L)){
         if (infoParent(p).genre == namaGenre){
             return p;
         }
         p = nextParent(p);
     }
-    return NULL;
+    if (infoParent(p).genre == namaGenre){
+        return p;
+    }
+    else{
+        cout << "Tidak ditemukan" << endl;
+        return NULL;
+    }
 }
 void insertLastChild(mll &L, adr_parent p, adr_children q){
     adr_children point;
-    point = nextChild(first(L));
+    point = nextChild(p);
     if(point==NULL){
-        point=q;
+//        point=q;
+            nextChild(p) = q;
     }else{
         while(nextChild(point)!=NULL){
             point = nextChild(point);
@@ -119,12 +130,24 @@ void insertChildOfParent(mll &L, adr_parent p, adr_children q){
         }
     }
 }
-void deleteChildOfParent(mll &L, adr_parent &p){
 
+void deleteChildOfParent(mll &L, adr_parent p, adr_children &q){
+    if(nextChild(p)==NULL){
+        cout << "Tidak ada data";
+    }else{
+        adr_children jalan;
+        jalan = nextChild(p);
+        while(nextChild(jalan)!=NULL){
+            jalan = nextChild(jalan);
+        }
+        q = nextChild(jalan);
+        nextChild(jalan) = NULL;
+    }
 }
+
 void showChildOfParentX(mll &L, adr_parent p){
     adr_children point;
-    point = nextChild(first(L));
+    point = nextChild(p);
     if(point==NULL){
         cout << "Tidak ada child";
     }else{
@@ -134,27 +157,33 @@ void showChildOfParentX(mll &L, adr_parent p){
         }
     }
 }
-adr_children findChildOfParentX(mll &L, adr_parent p, string namaFilm, string genre){
-    adr_parent point;
+adr_children findChildOfParentX(mll &L, adr_parent p, string namaFilm){
     adr_children chil;
-    bool ada;
     chil = nextChild(first(L));
-    ada = false;
-    point = first(L);
     if(first(L)==NULL){
         cout << "List kosong";
     }else{
-        while(point!=nextParent(point)){
-                if(infoParent(point).genre==genre){
-                    while(chil!=NULL){
-                        if(infoChild(chil).namaFilm==namaFilm){
-                            return chil;
-                        }
-                        chil = nextChild(chil);
-                    }
-                }
-                point = nextParent(point);
+//        while(point!=nextParent(point)){
+        chil = nextChild(p);
+        while(chil!=NULL){
+            if(infoChild(chil).namaFilm==namaFilm){
+                return chil;
+            }
+            chil = nextChild(chil);
         }
     }
     return NULL;
 }
+
+void create_MLLChildren(mllChild &L){
+    first(L) = NULL;
+    last(L) = NULL;
+}
+//void insertChild(mllChild &L, adr_children p){
+//    if(first(L) == NULL){
+//        first(L) = p;
+//    }
+//    else{
+//
+//    }
+//}
