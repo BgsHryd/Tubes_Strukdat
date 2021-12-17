@@ -59,5 +59,7 @@ adr_children findChildOfParentX(mll &L, adr_parent p, string namFilm);
 void create_MLLChildren(mllChild &L);
 void insertChild(mllChild &L, adr_children p);
 void deleteChild(mllChild &L, adr_children p);
+void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent p);
+void deleteRelationChildAndParent(mll &p, mllChild &c, adr_parent par);
 
 #endif // STREAMING_H_INCLUDED

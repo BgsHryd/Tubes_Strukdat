@@ -2,6 +2,7 @@
 
 int main(){
     mll L; adr_parent parent; adr_children child;
+    mllChild R;
     create_MLL(L);
 
     parent = alokasiParent("Action", 0);
@@ -31,13 +32,22 @@ int main(){
     child = alokasiChildren("Insidiusss", 9, "Joe mama");
     insertChildOfParent(L, parent, child);
 
-    cout << "anu" << endl;
-    deleteChildOfParent(L, parent, child);
-    deleteChildOfParent(L, parent, child);
-
     showChildOfParentX(L, parent);
 
+    cout << "===============Sesi Relasi==============" << endl;
 
+    create_MLLChildren(R);
+    insertChild(R, alokasiChildren("Kocaks", 8, "meja"));
+    insertChild(R, alokasiChildren("kocak", 9, "Kursi"));
+    insertChild(R, alokasiChildren("memnkocak", 10, "Kursis"));
+
+    parent = nextParent(parent);
+    cout << "insert" << endl;
+    makeRelationOfParentX(L, R, parent);
+    showChildOfParentX(L, parent);
+    cout << "delete" << endl;
+    deleteRelationChildAndParent(L, R, parent);
+    showChildOfParentX(L, parent);
 
     return 0;
 }

@@ -179,11 +179,67 @@ void create_MLLChildren(mllChild &L){
     first(L) = NULL;
     last(L) = NULL;
 }
-//void insertChild(mllChild &L, adr_children p){
-//    if(first(L) == NULL){
-//        first(L) = p;
-//    }
-//    else{
-//
-//    }
-//}
+void insertChild(mllChild &L, adr_children p){
+    if(first(L) == NULL){
+        first(L) = p;
+    }
+    else{
+        adr_children jalan;
+        jalan = first(L);
+        while(nextChild(jalan) != NULL){
+            jalan = nextChild(jalan);
+        }
+        nextChild(jalan) = p;
+    }
+}
+void deleteChild(mllChild &L, adr_children &p){
+    if (first(L) == NULL){
+        cout << "List Kosong" << endl;
+    }
+    else if (next(first(L)) == NULL){
+        p = first(L);
+        first(L) = NULL;
+    }
+    else{
+        adr_children jalan;
+        jalan = first(L);
+        while(nextChild(nextChild(jalan)) != NULL){
+            jalan = nextChild(jalan);
+        }
+        p = nextChild(jalan);
+        nextChild(jalan) = NULL;
+    }
+}
+void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent p){
+    if (nextChild(p) == NULL){
+        nextChild(p) = first(rel_child);
+    }
+    else{
+        adr_children jalan;
+        jalan = nextChild(p);
+        while(nextChild(jalan) != NULL){
+            jalan = nextChild(jalan);
+        }
+        nextChild(jalan) = first(rel_child);
+    }
+}
+void deleteRelationChildAndParent(mll &p, mllChild &c, adr_parent par){
+    if(nextChild(par)==NULL){
+        cout << "tidak ada child";
+    }else{
+        adr_children temp;
+        temp = nextChild(par);
+        while(nextChild(par)!=first(c) && par!=NULL){
+            temp = nextChild(par);
+        }
+        if(temp==NULL){
+            cout << "tidak ada relasi";
+        }else{
+            if(last(c)!=NULL){
+                nextChild(temp) = nextChild(last(c));
+            }else{
+                nextChild(temp)=NULL;
+            }
+        }
+    }
+}
