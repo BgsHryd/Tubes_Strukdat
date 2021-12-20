@@ -21,7 +21,7 @@ struct parent{
 };
 struct children{
     string namaFilm;
-    int rating;
+    float rating;
     string sutradara;
 };
 struct elm_parent{
@@ -45,21 +45,22 @@ struct mllChild{
 
 void create_MLL(mll &L);
 adr_parent alokasiParent(string genre, int total);
-adr_children alokasiChildren(string namaFilm, int rating, string sutradara);
+adr_children alokasiChildren(string namaFilm, float rating, string sutradara);
 void insertParent(mll &L, adr_parent p);
 void deleteParent(mll &L, adr_parent &p);
 void showParent(mll L);
 adr_parent findParent(mll L, string namaGenre);
-void insertLastChild(mll &L, adr_parent p, adr_children q);
-void insertChildOfParent(mll &L, adr_parent p, adr_children q);
+void insertLastChild(mll &L, adr_parent &p, adr_children q);
 void deleteChildOfParent(mll &L, adr_parent p, adr_children &q);
 void showChildOfParentX(mll &L, adr_parent p);
 adr_children findChildOfParentX(mll &L, adr_parent p, string namFilm);
 
 void create_MLLChildren(mllChild &L);
 void insertChild(mllChild &L, adr_children p);
-void deleteChild(mllChild &L, adr_children p);
-void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent p);
+void deleteChild(mllChild &L, adr_children &p);
+void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent &p);
 void deleteRelationChildAndParent(mll &p, mllChild &c, adr_parent par);
 
+void showAll(mll L);
+void averageRatingOfAllGenre(mll L);
 #endif // STREAMING_H_INCLUDED

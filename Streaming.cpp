@@ -16,7 +16,7 @@ adr_parent alokasiParent(string genre, int total){
 
     return p;
 }
-adr_children alokasiChildren(string namaFilm, int rating, string sutradara){
+adr_children alokasiChildren(string namaFilm, float rating, string sutradara){
     children temp;
     adr_children p = new elm_children;
 
@@ -96,41 +96,20 @@ adr_parent findParent(mll L, string namaGenre){
         return NULL;
     }
 }
-void insertLastChild(mll &L, adr_parent p, adr_children q){
+void insertLastChild(mll &L, adr_parent &p, adr_children q){
     adr_children point;
     point = nextChild(p);
     if(point==NULL){
-//        point=q;
-            nextChild(p) = q;
+        nextChild(p) = q;
+        infoParent(p).total++;
     }else{
         while(nextChild(point)!=NULL){
             point = nextChild(point);
         }
         nextChild(point) = q;
+        infoParent(p).total++;
     }
 }
-void insertChildOfParent(mll &L, adr_parent p, adr_children q){
-    adr_parent point;
-    bool ada;
-    ada = false;
-    point = first(L);
-    if(first(L)==NULL){
-        cout << "List kosong";
-    }else{
-        while(point!=nextParent(point)){
-                if(point==p){
-                    insertLastChild(L, point, q);
-                    ada = true;
-                    break;
-                }
-                point = nextParent(point);
-        }
-        if(ada==false){
-            cout << "Tidak ada parent di dalam list";
-        }
-    }
-}
-
 void deleteChildOfParent(mll &L, adr_parent p, adr_children &q){
     if(nextChild(p)==NULL){
         cout << "Tidak ada data";
@@ -196,9 +175,8 @@ void deleteChild(mllChild &L, adr_children &p){
     if (first(L) == NULL){
         cout << "List Kosong" << endl;
     }
-    else if (next(first(L)) == NULL){
-        p = first(L);
-        first(L) = NULL;
+    else if (nextChild(first(L)) == NULL){
+        p = NULL;
     }
     else{
         adr_children jalan;
@@ -210,9 +188,18 @@ void deleteChild(mllChild &L, adr_children &p){
         nextChild(jalan) = NULL;
     }
 }
-void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent p){
+void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent &p){
+    int n = 0;
+    adr_children chil;
+    chil = first(rel_child);
+    while (chil != NULL){
+        n++;
+        chil = nextChild(chil);
+    }
+
     if (nextChild(p) == NULL){
         nextChild(p) = first(rel_child);
+        infoParent(p).total += n;
     }
     else{
         adr_children jalan;
@@ -221,6 +208,7 @@ void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent p){
             jalan = nextChild(jalan);
         }
         nextChild(jalan) = first(rel_child);
+        infoParent(p).total += n;
     }
 }
 void deleteRelationChildAndParent(mll &p, mllChild &c, adr_parent par){
@@ -241,5 +229,59 @@ void deleteRelationChildAndParent(mll &p, mllChild &c, adr_parent par){
                 nextChild(temp)=NULL;
             }
         }
+    }
+}
+void showAll(mll L){
+    if(first(L)==NULL){
+        cout << "List kosong" << endl;
+    }else{
+        adr_parent p;
+        adr_children q;
+        p = first(L);
+        while(nextParent(p)!=first(L)){
+            cout << infoParent(p).genre << " | " << infoParent(p).total << endl;
+            q = nextChild(p);
+            while(q!=NULL){
+                cout << infoChild(q).namaFilm << " " << infoChild(q).rating << " " << infoChild(q).sutradara << endl;
+                q = nextChild(q);
+            }
+            cout << endl;
+            p = nextParent(p);
+        }
+        cout << infoParent(p).genre << " | " << infoParent(p).total << endl;
+        q = nextChild(p);
+        while(q!=NULL){
+            cout << infoChild(q).namaFilm << " " << infoChild(q).rating << " " << infoChild(q).sutradara << endl;
+            q = nextChild(q);
+        }
+        cout << endl;
+        p = nextParent(p);
+    }
+}
+void averageRatingOfAllGenre(mll L){
+    if (first(L) == NULL){
+        cout << "List Kosong" << endl;
+    }
+    else{
+        adr_parent jalan; adr_children chil;
+        float total;
+        jalan = first(L);
+        while(nextParent(jalan) != first(L)){
+            chil = nextChild(jalan);
+            total = 0;
+            while(chil != NULL){
+                total = total + infoChild(chil).rating;
+                chil = nextChild(chil);
+            }
+            cout << "Genre: " << infoParent(jalan).genre << "  Rating: " << total/infoParent(jalan).total << endl;
+            jalan = nextParent(jalan);
+        }
+        total = 0;
+        chil = nextChild(jalan);
+        while(chil != NULL){
+            total += infoChild(chil).rating;
+            chil = nextChild(chil);
+        }
+        cout << "Genre: " << infoParent(jalan).genre << "  Rating: " << total/infoParent(jalan).total << endl;
     }
 }
