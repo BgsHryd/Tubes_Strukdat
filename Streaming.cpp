@@ -172,26 +172,26 @@ void insertChild(mllChild &L, adr_children p){
     }
 }
 void deleteChild(mllChild &L, adr_children &p){
-    if (first(L) == NULL){
+    if (first(L) == NULL && last(L) == NULL){
         cout << "List Kosong" << endl;
     }
-    else if (nextChild(first(L)) == NULL){
-        p = NULL;
+    else if (first(L) == last(L)){
+        p = first(L);
+        first(L) = NULL;
+        last(L) = NULL;
     }
     else{
-        adr_children jalan;
-        jalan = first(L);
-        while(nextChild(nextChild(jalan)) != NULL){
-            jalan = nextChild(jalan);
-        }
-        p = nextChild(jalan);
-        nextChild(jalan) = NULL;
+        p = last(L);
+        last(L) = prevChild(p);
+        prevChild(p) = NULL;
+        nextChild(prevChild(p)) = NULL;
     }
 }
 void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent &p){
     int n = 0;
     adr_children chil;
     chil = first(rel_child);
+    // count element in the list child
     while (chil != NULL){
         n++;
         chil = nextChild(chil);
@@ -208,27 +208,23 @@ void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent &p){
             jalan = nextChild(jalan);
         }
         nextChild(jalan) = first(rel_child);
+        prevChild(first(rel_child)) = jalan;
         infoParent(p).total += n;
     }
 }
 void deleteRelationChildAndParent(mll &p, mllChild &c, adr_parent par){
     if(nextChild(par)==NULL){
-        cout << "tidak ada child";
+        cout << "tidak ada child" << endl;
     }else{
-        adr_children temp;
-        temp = nextChild(par);
-        while(nextChild(par)!=first(c) && par!=NULL){
-            temp = nextChild(par);
+        create_MLLChildren(c);
+        adr_children chil;
+        chil = nextChild(par);
+        while (chil != NULL){
+            insertChild(c, chil);
+            chil = nextChild(chil);
         }
-        if(temp==NULL){
-            cout << "tidak ada relasi";
-        }else{
-            if(last(c)!=NULL){
-                nextChild(temp) = nextChild(last(c));
-            }else{
-                nextChild(temp)=NULL;
-            }
-        }
+        nextChild(par) = NULL;
+        infoParent(par).total = 0;
     }
 }
 void showAll(mll L){
