@@ -12,6 +12,7 @@ using namespace std;
 
 #define infoChild(P) P->infoChild
 #define nextChild(P) P->nextChild
+#define prevChild(P) P->prevChild
 
 typedef struct elm_parent *adr_parent;
 typedef struct elm_children *adr_children;
@@ -32,6 +33,7 @@ struct elm_parent{
 struct elm_children {
     children infoChild;
     adr_children nextChild;
+    adr_children prevChild;
 };
 struct mll{
     adr_parent first;
