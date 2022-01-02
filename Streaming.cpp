@@ -25,6 +25,7 @@ adr_children alokasiChildren(string namaFilm, float rating, string sutradara){
     temp.sutradara = sutradara;
     infoChild(p) = temp;
     nextChild(p) = NULL;
+    prevChild(P) = NULL;
 
     return p;
 }
@@ -100,6 +101,7 @@ void insertLastChild(mll &L, adr_parent &p, adr_children q){
     adr_children point;
     point = nextChild(p);
     if(point==NULL){
+        // kalo yg awal, prev nya di NULL kah ???
         nextChild(p) = q;
         infoParent(p).total++;
     }else{
@@ -107,6 +109,7 @@ void insertLastChild(mll &L, adr_parent &p, adr_children q){
             point = nextChild(point);
         }
         nextChild(point) = q;
+        prevChild(q) = point;
         infoParent(p).total++;
     }
 }
@@ -120,6 +123,7 @@ void deleteChildOfParent(mll &L, adr_parent p, adr_children &q){
             jalan = nextChild(jalan);
         }
         q = nextChild(jalan);
+        prevChild(q)=NULL;
         nextChild(jalan) = NULL;
     }
 }
@@ -169,6 +173,7 @@ void insertChild(mllChild &L, adr_children p){
             jalan = nextChild(jalan);
         }
         nextChild(jalan) = p;
+        prevChild(p) = jalan;
     }
 }
 void deleteChild(mllChild &L, adr_children &p){
