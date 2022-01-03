@@ -5,7 +5,7 @@ int main(){
     mll L;
     create_MLL(L);
     adr_parent par;
-    par = alokasiParent("Action", 0);
+    par = alokasiParent("Action");
     insertParent(L, par);
     adr_children chil;
     chil = alokasiChildren("Spider-Man: No Way Home", 8.0, "Jon Watts" );
@@ -23,7 +23,7 @@ int main(){
     insertLastChild(L, par, chil);
     // kotak 2
     create_MLLChildren(C);
-    par = alokasiParent("Animasi", 0);
+    par = alokasiParent("Animasi");
     insertParent(L, par);
     chil = alokasiChildren("Encanto", 7.3, "Byron Howard" );
     insertChild(C, chil);
@@ -33,7 +33,7 @@ int main(){
     insertChild(C, chil);
     makeRelationOfParentX(L, C, par);
     // kotak 3
-    par = alokasiParent("Musikal/Drama", 0);
+    par = alokasiParent("Musikal/Drama");
     insertParent(L, par);
     chil = alokasiChildren("The Greatest Showman", 8.0, "Jon Watts" );
     insertLastChild(L, par, chil);

@@ -46,7 +46,7 @@ struct mllChild{
 };
 
 void create_MLL(mll &L);
-adr_parent alokasiParent(string genre, int total);
+adr_parent alokasiParent(string genre);
 adr_children alokasiChildren(string namaFilm, float rating, string sutradara);
 void insertParent(mll &L, adr_parent p);
 void deleteParent(mll &L, adr_parent &p);

@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1641033245 source:c:\users\asus\onedrive\documents\telu\github\tubes_strukdat\main.cpp
+1641203278 source:c:\users\asus\onedrive\documents\telu\github\tubes_strukdat\main.cpp
 	"Streaming.h"
 
-1641201396 source:c:\users\asus\onedrive\documents\telu\github\tubes_strukdat\streaming.cpp
+1641203278 source:c:\users\asus\onedrive\documents\telu\github\tubes_strukdat\streaming.cpp
 	"Streaming.h"
 
 1640013048 source:c:\users\rizky\onedrive\documents\github\tubes_strukdat\main.cpp
@@ -14,6 +14,6 @@
 1640013017 source:c:\users\rizky\onedrive\documents\github\tubes_strukdat\streaming.cpp
 	"Streaming.h"
 
-1641010739 c:\users\asus\onedrive\documents\telu\github\tubes_strukdat\streaming.h
+1641203278 c:\users\asus\onedrive\documents\telu\github\tubes_strukdat\streaming.h
 	<iostream>
 

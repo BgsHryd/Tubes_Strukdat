@@ -4,12 +4,12 @@ void create_MLL(mll &L){
     first(L) = NULL;
     last(L) = NULL;
 }
-adr_parent alokasiParent(string genre, int total){
+adr_parent alokasiParent(string genre){
     parent temp;
     adr_parent p = new elm_parent;
 
     temp.genre = genre;
-    temp.total = total;
+    temp.total = 0;
     infoParent(p) = temp;
     nextParent(p) = NULL;
     nextChild(p) = NULL;
@@ -101,7 +101,6 @@ void insertLastChild(mll &L, adr_parent &p, adr_children q){
     adr_children point;
     point = nextChild(p);
     if(point==NULL){
-        // kalo yg awal, prev nya di NULL kah ???
         nextChild(p) = q;
         infoParent(p).total++;
     }else{
@@ -146,7 +145,6 @@ adr_children findChildOfParentX(mll &L, adr_parent p, string namaFilm){
     if(first(L)==NULL){
         cout << "List kosong";
     }else{
-//        while(point!=nextParent(point)){
         chil = nextChild(p);
         while(chil!=NULL){
             if(infoChild(chil).namaFilm==namaFilm){
@@ -196,7 +194,6 @@ void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent &p){
     int n = 0;
     adr_children chil;
     chil = first(rel_child);
-    // count element in the list child
     while (chil != NULL){
         n++;
         chil = nextChild(chil);
