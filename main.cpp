@@ -22,8 +22,16 @@ int main(){
     chil = alokasiChildren("Avengers: Endgame", 8.8, "Jon Watts" );
     insertLastChild(L, par, chil);
     // kotak 2
+    create_MLLChildren(C);
     par = alokasiParent("Animasi", 0);
     insertParent(L, par);
+    chil = alokasiChildren("Encanto", 7.3, "Byron Howard" );
+    insertChild(C, chil);
+    chil = alokasiChildren("Frozen 2", 7.5, "Jennifer Lee" );
+    insertChild(C, chil);
+    chil = alokasiChildren("Raya and the Last Dragon", 7.3, "Carlos López Estrada," );
+    insertChild(C, chil);
+    makeRelationOfParentX(L, C, par);
     // kotak 3
     par = alokasiParent("Musikal/Drama", 0);
     insertParent(L, par);

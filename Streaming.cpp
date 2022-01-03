@@ -25,7 +25,7 @@ adr_children alokasiChildren(string namaFilm, float rating, string sutradara){
     temp.sutradara = sutradara;
     infoChild(p) = temp;
     nextChild(p) = NULL;
-    prevChild(P) = NULL;
+    prevChild(p) = NULL;
 
     return p;
 }
