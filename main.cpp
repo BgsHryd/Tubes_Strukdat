@@ -29,7 +29,7 @@ int main(){
     insertChild(C, chil);
     chil = alokasiChildren("Frozen 2", 7.5, "Jennifer Lee" );
     insertChild(C, chil);
-    chil = alokasiChildren("Raya and the Last Dragon", 7.3, "Carlos López Estrada," );
+    chil = alokasiChildren("Raya and the Last Dragon", 7.3, "Carlos Lopez Estrada" );
     insertChild(C, chil);
     makeRelationOfParentX(L, C, par);
     // kotak 3
