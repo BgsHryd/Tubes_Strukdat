@@ -163,15 +163,12 @@ void create_MLLChildren(mllChild &L){
 void insertChild(mllChild &L, adr_children p){
     if(first(L) == NULL){
         first(L) = p;
+        last(L) = p;
     }
     else{
-        adr_children jalan;
-        jalan = first(L);
-        while(nextChild(jalan) != NULL){
-            jalan = nextChild(jalan);
-        }
-        nextChild(jalan) = p;
-        prevChild(p) = jalan;
+        nextChild(last(L)) = p;
+        prevChild(p) = last(L);
+        last(L) = p;
     }
 }
 void deleteChild(mllChild &L, adr_children &p){
@@ -198,7 +195,6 @@ void makeRelationOfParentX(mll &L, mllChild rel_child, adr_parent &p){
         n++;
         chil = nextChild(chil);
     }
-
     if (nextChild(p) == NULL){
         nextChild(p) = first(rel_child);
         infoParent(p).total += n;
