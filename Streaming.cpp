@@ -114,16 +114,16 @@ void insertLastChild(mll &L, adr_parent &p, adr_children q){
 }
 void deleteChildOfParent(mll &L, adr_parent p, adr_children &q){
     if(nextChild(p)==NULL){
-        cout << "Tidak ada data";
+        cout << "Tidak ada data" << endl;
     }else{
         adr_children jalan;
         jalan = nextChild(p);
         while(nextChild(jalan)!=NULL){
             jalan = nextChild(jalan);
         }
-        q = nextChild(jalan);
+        q = jalan;
+        nextChild(prevChild(jalan)) = NULL;
         prevChild(q)=NULL;
-        nextChild(jalan) = NULL;
     }
 }
 
