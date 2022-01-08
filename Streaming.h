@@ -55,7 +55,7 @@ adr_parent findParent(mll L, string namaGenre);
 void insertLastChild(mll &L, adr_parent &p, adr_children q);
 void deleteChildOfParent(mll &L, adr_parent p, adr_children &q);
 void showChildOfParentX(mll &L, adr_parent p);
-adr_children findChildOfParentX(mll &L, adr_parent p, string namFilm);
+adr_children findChildOfParentX(mll &L, adr_parent p, string namaFilm);
 
 void create_MLLChildren(mllChild &L);
 void insertChild(mllChild &L, adr_children p);

@@ -65,5 +65,9 @@ int main(){
     cout << "\n===================DeleteRelationChildAndParent====================\n" << endl;
     showAll(L);
     averageRatingOfAllGenre(L);
+    cout << endl;
+    adr_children cari;
+    cari = findChildOfParentX(L, first(L), "Spider-Man: No Way Home");
+    cout << infoChild(cari).namaFilm;
     return 0;
 }
